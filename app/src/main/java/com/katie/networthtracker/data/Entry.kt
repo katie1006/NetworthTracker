@@ -1,3 +1,3 @@
 package com.katie.networthtracker.data
 
-data class Entry(val title: String, var amount: Int = 0)
+data class Entry(override val name: String, var amount: Int = 0) : FormData
