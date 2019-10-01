@@ -1,20 +1,15 @@
 package com.katie.networthtracker.network
 
 import com.katie.networthtracker.Utils
+import com.katie.networthtracker.data.CalcResult
 import com.katie.networthtracker.data.Entry
 import com.katie.networthtracker.data.EntryGroup
 
-class NetworkAPI {
-    fun getNetworth(assets: EntryGroup, liabilities: EntryGroup, currency: String): Int {
-        return getTotalAssets(assets) - getTotalLiability(liabilities)
-    }
-
-    fun getTotalLiability(liabilities: EntryGroup): Int {
-        return getTotal(liabilities)
-    }
-
-    fun getTotalAssets(assets: EntryGroup): Int {
-        return getTotal(assets)
+class NetworthAPI {
+    fun calculate(assets: EntryGroup, liabilities: EntryGroup, currency: String): CalcResult {
+        val totalAssets = getTotal(assets)
+        val totalLiabilities = getTotal(liabilities)
+        return CalcResult(totalAssets - totalLiabilities, totalLiabilities, totalAssets)
     }
 
     private fun getTotal(entryGroup: EntryGroup): Int {
