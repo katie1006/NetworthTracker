@@ -21,7 +21,6 @@ class FormRepo : FormContract.Repo {
             return
         }
 
-        // todo: currency needs to come from input
         callback.onResult(api.calculate(assets, liabilities, currency))
     }
 

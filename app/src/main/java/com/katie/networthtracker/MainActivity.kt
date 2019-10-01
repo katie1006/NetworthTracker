@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), FormContract.View {
     override fun onDestroy() {
         super.onDestroy()
         formPresenter.unsubscribe()
+        formAdapter.unsubscribe()
     }
 
     override fun showErrorDialog(error: String?) {

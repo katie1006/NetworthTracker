@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.katie.networthtracker.R
-import com.katie.networthtracker.Utils.PATH_TOTAL_AMOUNT
 import com.katie.networthtracker.Utils.TITLE_ASSETS
 import com.katie.networthtracker.Utils.TITLE_LIABILITIES
-import com.katie.networthtracker.Utils.TITLE_NETWORTH
 import com.katie.networthtracker.data.Entry
 import com.katie.networthtracker.data.EntryGroupPlaceholder
 import com.katie.networthtracker.data.FormDataWrapper
@@ -121,12 +119,12 @@ class FormAdapter : RecyclerView.Adapter<FormVH>(), EntryAmountListener, Currenc
 }
 
 enum class CalcView(val title: String) {
-    NET_WORTH(TITLE_NETWORTH),
+    NET_WORTH("Networth"),
     TOTAL_ASSETS("Total $TITLE_ASSETS"),
     TOTAL_LIABILITIES("Total $TITLE_LIABILITIES")
     ;
 
-    val path = arrayOf(PATH_TOTAL_AMOUNT)
+    val path = arrayOf("total_amount")
 
     fun getWrapper(): FormDataWrapper {
         return FormDataWrapper(Entry(title), path, ordinal)

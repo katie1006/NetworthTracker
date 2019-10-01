@@ -24,5 +24,3 @@ data class FormDataWrapper(val data: FormData, val path: Array<String>, val posi
         return path.contentHashCode()
     }
 }
-
-data class FormHeader(override val name: String, val currency: String) : FormData
