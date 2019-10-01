@@ -11,11 +11,9 @@ import com.katie.networthtracker.Utils.TITLE_NETWORTH
 import com.katie.networthtracker.data.Entry
 import com.katie.networthtracker.data.EntryGroupPlaceholder
 import com.katie.networthtracker.data.FormDataWrapper
-import com.katie.networthtracker.formlist.viewholder.EntryAmountListener
-import com.katie.networthtracker.formlist.viewholder.EntryVH
-import com.katie.networthtracker.formlist.viewholder.FormVH
+import com.katie.networthtracker.formlist.viewholder.*
 
-class FormAdapter : RecyclerView.Adapter<FormVH>(), EntryAmountListener {
+class FormAdapter : RecyclerView.Adapter<FormVH>(), EntryAmountListener, CurrencyListener {
 
     private val dataset = arrayListOf<FormDataWrapper>()
     private var formPresenter: FormContract.Presenter? = null
@@ -76,6 +74,7 @@ class FormAdapter : RecyclerView.Adapter<FormVH>(), EntryAmountListener {
                 result
             }
             ViewType.VIWE_TYPE_ENTRY_EDITABLE -> EntryVH(root, this)
+            ViewType.VIEW_TYPE_HEADER -> HeaderVH(root, this)
             else -> FormVH(root)
         }
     }
@@ -107,6 +106,10 @@ class FormAdapter : RecyclerView.Adapter<FormVH>(), EntryAmountListener {
 
     override fun onAmountChanged(pos: Int, amount: Int) {
         formPresenter?.onEntryAmountChanged(dataset[pos].path, amount)
+    }
+
+    override fun onCurrencyChanged(currency: String) {
+        formPresenter?.onCurrencyChanged(currency)
     }
 
     private enum class ViewType(val layoutId: Int) {

@@ -36,7 +36,7 @@ class FormDataManager {
     fun getDataForUI(): List<FormDataWrapper> {
         val result = arrayListOf<FormDataWrapper>()
         // first header
-        result.add(FormDataWrapper(Entry("CAD"), emptyArray()))
+        result.add(FormDataWrapper(Entry(currency), emptyArray()))
         // then networth
         result.add(CalcView.NET_WORTH.getWrapper())
         // now assets
